@@ -21,7 +21,7 @@ public class Person implements Serializable {
 	private Long id;
 	private String name;
 	
-	@DateTimeFormat(style = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 	private String cpf;
 	private String email;
