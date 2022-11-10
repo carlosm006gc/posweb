@@ -33,12 +33,12 @@
 					<td th:text="${person.phone}"></td>
 					<td th:text="${person.email}"></td>
 					<!-- 
-					<td th:text="${person.departament}"></td>
-					<td>
-						<a th:href="@{/person/{id}(id=${person.id})}" class="btn btn-primary">Change</a>
-						<a th:href="@{/person/delete/{id}(id=${person.id})}" class="btn btn-danger">Delete</a>			
-					</td>
-					 -->
+					<td th:text="${person.departament}"></td>					 -->
+
+					<td><a th:href="@{/person/change/{id}(id=${person.id})}"
+						class="btn btn-primary">Change</a> <a
+						th:href="@{/person/delete/{id}(id=${person.id})}"
+						class="btn btn-danger">Delete</a>
 				</tr>
 			</tbody>
 		</table>
