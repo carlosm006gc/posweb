@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,22 +19,36 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@NotBlank
+	@Column(nullable = false)
 	private String name;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 	private String cpf;
+
+	@Email
+	@Column(nullable = false)
 	private String email;
+
 	private String phone;
+
+	@ManyToOne(optional = false)
+	private City city;
+
+	@ManyToOne(optional = false)
+	private Departament departament;
 
 	public Person() {
 	}
 
-	public Person(Long id, String name, LocalDate birthDate, String cpf, String email, String phone) {
+	public Person(Long id, @NotBlank String name, LocalDate birthDate, String cpf, @Email String email, String phone,
+			City city, Departament departament) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -38,6 +56,8 @@ public class Person implements Serializable {
 		this.cpf = cpf;
 		this.email = email;
 		this.phone = phone;
+		this.city = city;
+		this.departament = departament;
 	}
 
 	public Long getId() {
@@ -88,6 +108,29 @@ public class Person implements Serializable {
 		this.phone = phone;
 	}
 
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public Departament getDepartament() {
+		return departament;
+	}
+
+	public void setDepartament(Departament departament) {
+		this.departament = departament;
+	}
+
+	public String getNameDepartament() {
+		if(departament != null) {
+			return departament.getName();
+		}
+		return "";
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -103,6 +146,11 @@ public class Person implements Serializable {
 			return false;
 		Person other = (Person) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + "]";
 	}
 
 }
