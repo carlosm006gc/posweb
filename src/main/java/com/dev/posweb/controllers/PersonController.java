@@ -86,7 +86,7 @@ public class PersonController {
 	@RequestMapping("/person/departamentNameAutoComplete")
 	@ResponseBody
 	public List<AutoCompleteDTO> departamentNameAutoComplete(@RequestParam(value = "term", required = false, defaultValue = "") String term) {
-		List<AutoCompleteDTO> suggestions = new ArrayList<>();
+		List<AutoCompleteDTO> suggestions = 	new ArrayList<>();
 		try {
 			if (term.length() >= 3) {
 				suggestionsDepartament = departamentRepository.searchByName(term);

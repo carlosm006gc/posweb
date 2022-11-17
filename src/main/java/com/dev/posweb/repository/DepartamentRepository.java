@@ -13,6 +13,6 @@ import com.dev.posweb.domain.Departament;
 @Repository
 public interface DepartamentRepository extends JpaRepository<Departament, Long>{
 
-	@Query("select d from Departament d where lower(d.name) like lower(concat(:term, '%'))")
-	List<Departament> searchByName(@Param("term") String term);
+	@Query("select d from Departament d where lower(d.name) like lower(concat(:termo, '%'))")
+	List<Departament> searchByName(@Param("termo") String termo);
 }
