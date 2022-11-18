@@ -6,14 +6,18 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.dev.posweb.domain.City;
 import com.dev.posweb.domain.Departament;
 import com.dev.posweb.domain.Person;
+import com.dev.posweb.domain.Role;
+import com.dev.posweb.domain.Users;
 import com.dev.posweb.repository.CityRepository;
 import com.dev.posweb.repository.DepartamentRepository;
 import com.dev.posweb.repository.PersonRepository;
+import com.dev.posweb.repository.UserRepository;
 
 @Component
 @Transactional
@@ -27,6 +31,12 @@ public class InitialPerson implements CommandLineRunner {
 	
 	@Autowired
 	private DepartamentRepository departamentRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -48,6 +58,9 @@ public class InitialPerson implements CommandLineRunner {
 		personRepository.save(p1);
 		personRepository.save(p2);
 
+		Users u1 = new Users("carlos" , passwordEncoder.encode("carlos824500"), Role.ADMIN.getName()); 
+		
+		userRepository.save(u1);
 	}
 
 }

@@ -12,6 +12,7 @@ crossorigin="anonymous">
 
 </head>
 <body>
+	<header th:insert="fragments/geral.html :: header"> </header>
 
 	<div class="container my-2">
 		<h2>Edit Departament</h2>
@@ -26,7 +27,7 @@ crossorigin="anonymous">
 			<button type="submit" class="btn btn-info col-2">Save</button>
 		</form>
 		<hr>
-		<a th:href="@{/departament}">Return to departament list</a>
+		<a th:href="@{/departaments}">Return to departament list</a>
 	</div>
 </body>
 </html>

@@ -21,7 +21,7 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
-	<!--  <header th:insert="fragments/geral.html :: header"> </header> -->
+	<header th:insert="fragments/geral.html :: header"> </header>
 
 	<div class="container my-2">
 		<a th:href="@{/departament/new}" class="btn btn-primary btn-sm mb-3">Include
@@ -40,7 +40,11 @@
 				<tr th:each="departament : ${listDepartament}">
 					<td th:text="${departament.name}"></td>
 					<td th:text="${departament.initials}"></td>
+					
+					<td><a th:href="@{/departament/change/{id}(id=${departament.id})}"
+						class="btn btn-primary">Change</a>
 				</tr>
+				
 			</tbody>
 		</table>
 		
