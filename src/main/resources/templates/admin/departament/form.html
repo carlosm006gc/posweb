@@ -16,7 +16,7 @@ crossorigin="anonymous">
 
 	<div class="container my-2">
 		<h2>Edit Departament</h2>
-		<form action="#" th:action="@{/departament/save}" th:object="${departament}" method="POST">
+		<form action="#" th:action="@{admin/departament/save}" th:object="${departament}" method="POST">
 			<input type="hidden" id="id" th:field="*{id}">
 			
 			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
@@ -27,7 +27,7 @@ crossorigin="anonymous">
 			<button type="submit" class="btn btn-info col-2">Save</button>
 		</form>
 		<hr>
-		<a th:href="@{/departaments}">Return to departament list</a>
+		<a th:href="@{admin/departaments}">Return to departament list</a>
 	</div>
 </body>
 </html>

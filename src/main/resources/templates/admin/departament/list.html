@@ -24,7 +24,7 @@
 	<header th:insert="fragments/geral.html :: header"> </header>
 
 	<div class="container my-2">
-		<a th:href="@{/departament/new}" class="btn btn-primary btn-sm mb-3">Include
+		<a th:href="@{/admin/departament/new}" class="btn btn-primary btn-sm mb-3">Include
 			Departament</a>
 		<h1>Departament</h1>
 		<table border="1" class="table table-striped table-responsive-md">
@@ -41,13 +41,13 @@
 					<td th:text="${departament.name}"></td>
 					<td th:text="${departament.initials}"></td>
 					
-					<td><a th:href="@{/departament/change/{id}(id=${departament.id})}"
+					<td><a th:href="@{admin/departament/change/{id}(id=${departament.id})}"
 						class="btn btn-primary">Change</a>
 				</tr>
 				
 			</tbody>
 		</table>
-		
+				<a th:href="@{/admin/administrative}">Return to administrative</a>
 	</div>
 </body>
 </html>

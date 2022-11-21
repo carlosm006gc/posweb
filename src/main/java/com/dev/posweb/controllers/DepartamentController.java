@@ -22,36 +22,36 @@ public class DepartamentController {
 	@Autowired
 	private DepartamentRepository departamentRepository;
 
-	@GetMapping("/departaments")
+	@GetMapping("/admin/departaments")
 	public String departaments(Model model) {
 		model.addAttribute("listDepartament", departamentRepository.findAll());
-		return "departament/list";
+		return "admin/departament/list";
 	}
 
-	@GetMapping("/departament/new")
+	@GetMapping("/admin/departament/new")
 	public String newDepartament(Model model) {
 		model.addAttribute("departament", new Departament());
-		return "departament/form";
+		return "/admin/departament/form";
 	}
 
-	@PostMapping("/departament/save")
+	@PostMapping("/admin/departament/save")
 	public String saveDepartament(@Valid @ModelAttribute("departament") Departament departament,
 			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "departament/form";
+			return "/admin/departament/form";
 		}
 		departamentRepository.save(departament);
 		return "redirect:/departaments";
 	}
 
-	@GetMapping("/departament/change/{id}")
+	@GetMapping("/admin/departament/change/{id}")
 	public String changeDepartament(@PathVariable("id") Long id, Model model) {
 		Optional<Departament> departamentOp = departamentRepository.findById(id);
 		if (departamentOp.isEmpty()) {
 			throw new IllegalArgumentException("Invalid Departament");
 		}
 		model.addAttribute("departament", departamentOp.get());
-		return "departament/form";
+		return "/admin/departament/form";
 	}
 
 }
