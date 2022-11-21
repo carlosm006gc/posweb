@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Posweb</title>
+ <th:block th:include="fragments/geral.html :: headerfiles">
+        </th:block> 
+</head>
+
+<body>
+
+<header th:insert="fragments/geral.html :: header"> </header>
+
+<div class="container my-2">
+    <h1 th:if="${errorMessage}" th:utext="${errorMessage}">Error</h1>
+    <h1 th:if="!${errorMessage}">404 - Page not found.</h1>
+    <a th:href="@{/home}">Return to homepage.</a>
+</div>
+
+</body>
+</html>

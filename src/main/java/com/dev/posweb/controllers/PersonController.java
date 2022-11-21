@@ -42,21 +42,21 @@ public class PersonController {
 	@GetMapping("/person")
 	public String persons(Model model) {
 		model.addAttribute("listPerson", personRepository.findAll());
-		return "person/index";
+		return "/rh/person/index";
 	}
 
 	@GetMapping("/person/new")
 	public String newPerson(Model model) {
 		model.addAttribute("person", new Person());
 		model.addAttribute("cities", cityRepository.findAll());
-		return "person/form";
+		return "/rh/person/form";
 	}
 
 	@PostMapping("/person/save")
 	public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("cities", cityRepository.findAll());
-			return "person/form";
+			return "/rh/person/form";
 		}
 		personRepository.save(person);
 		return "redirect:/person";
@@ -70,7 +70,7 @@ public class PersonController {
 		}
 		model.addAttribute("person", personOp.get());
 		model.addAttribute("cities", cityRepository.findAll());
-		return "person/form";
+		return "/rh/person/form";
 	}
 
 	@GetMapping("/person/delete/{id}")

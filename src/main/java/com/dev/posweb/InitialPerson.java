@@ -59,8 +59,11 @@ public class InitialPerson implements CommandLineRunner {
 		personRepository.save(p2);
 
 		Users u1 = new Users("carlos" , passwordEncoder.encode("carlos824500"), Role.ADMIN.getName()); 
+		Users u2 = new Users("marya" , passwordEncoder.encode("marya824500"), Role.USER.getName()); 
+
 		
 		userRepository.save(u1);
+		userRepository.save(u2);
 	}
 
 }

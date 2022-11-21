@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8" />
+<title>Posweb</title>
+ <th:block th:include="fragments/geral.html :: headerfiles">
+        </th:block> 
+</head>
+<body>
+	<header th:insert="fragments/geral.html :: header"> </header>
+	<div class="container my-2">
+		<h2>Be welcome!</h2>
+		<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+			<div class="col">
+				<div class="card mb-4 shadow-sm">
+					<div class="card-header">
+						<h4 class="my-0 fw-normal">RH</h4>
+					</div>
+					<div class="card-body">
+						<ul class="list-unstyled mt-3 mb-4">
+							<li>Human Resources Control</li>
+							<li>Department Controls</li>
+						</ul>
+						<a class="w-100 btn btn-lg btn-primary" th:href="@{/person}">Access</a>
+					</div>
+				</div>
+			</div>
+			<div sec:authorize="hasAuthority('ADMIN')">
+				<div class="col">
+					<div class="card mb-4 shadow-sm">
+						<div class="card-header">
+							<h4 class="my-0 fw-normal">Administrative</h4>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled mt-3 mb-4">
+								<li>User Control</li>
+								<li>System Administration</li>
+							</ul>
+							<a class="w-100 btn btn-lg btn-primary" th:href="@{/admin/users}">Access</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

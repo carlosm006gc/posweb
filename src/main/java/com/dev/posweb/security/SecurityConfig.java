@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.dev.posweb.domain.Role;
+
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
@@ -22,9 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+		.antMatchers("/css/**", "/js/**", "/resources/**","/error").permitAll()
+		.antMatchers("/adm/**").hasAuthority(Role.ADMIN.getName())
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().permitAll()
+		.formLogin()
+		.loginPage("/login").defaultSuccessUrl("/home")
+		.permitAll()
 		.and()
 		.logout().permitAll();
 
