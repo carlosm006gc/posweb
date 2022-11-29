@@ -18,20 +18,6 @@ crossorigin="anonymous">
   integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" 
   crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-	$(function() {
-		
-		("#nameDepartament").autocomplete({
-			source: "departamentNameAutoComplete", 
-			minLength: 3,
-			select: function(event, ui) {
-				this.value = ui.item.label;
-				$("#idDepartament").val(ui.item.value);
-				return false;
-			}
-		});
-	});
-</script>
 </head>
 <body>
 	<header th:insert="fragments/geral.html :: header"> </header>
@@ -58,8 +44,9 @@ crossorigin="anonymous">
 			</select>
 			
 			<span th:if="${#fields.hasErrors('departament')}" th:errors="*{departament}" class="text-danger"></span>
-			<input id="nameDepartament" type="text" th:field="*{nameDepartament}" placeholder="Departament" class="form-control mb-4 col-4">
-  			<input id="idDepartament" type="hidden" th:field="*{departament}" class="form-control mb-4 col-4">	 
+			<select th:field="*{departament}" class="form-control mb-4 col-4" >
+			<option th:each="departament: ${departaments}" th:value="${departament.id}" th:text="${departament.name}"></option>
+			</select>	 
 			
 			<button type="submit" class="btn btn-info col-2">Save</button>
 		</form>

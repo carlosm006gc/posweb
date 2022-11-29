@@ -59,7 +59,7 @@ public class UsersController {
 	}
 
 	@PostMapping("admin/users/save")
-	public String saveUsers(@Valid @ModelAttribute("usuario") Users users, BindingResult bindingResult, Model model) {
+	public String saveUsers(@Valid @ModelAttribute("users") Users users, BindingResult bindingResult, Model model) {
 
 		Users userFound = userRepository.findByUsername(users.getUsername());
 		if (userFound != null && userFound.getId() != users.getId()) {

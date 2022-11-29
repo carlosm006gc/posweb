@@ -38,10 +38,10 @@ public class DepartamentController {
 	public String saveDepartament(@Valid @ModelAttribute("departament") Departament departament,
 			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "/admin/departament/form";
+			return "admin/departament/new";
 		}
 		departamentRepository.save(departament);
-		return "redirect:/departaments";
+		return "redirect:/admin/departaments";
 	}
 
 	@GetMapping("/admin/departament/change/{id}")

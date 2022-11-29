@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotBlank
@@ -40,10 +41,10 @@ public class Person implements Serializable {
 
 	private String phone;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private City city;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Departament departament;
 
 	public Person() {
@@ -118,6 +119,13 @@ public class Person implements Serializable {
 		this.city = city;
 	}
 
+	public String getNameCity() {
+		if (city != null) {
+			return city.getName();
+		}
+		return "";
+	}
+
 	public Departament getDepartament() {
 		return departament;
 	}
@@ -127,7 +135,7 @@ public class Person implements Serializable {
 	}
 
 	public String getNameDepartament() {
-		if(departament != null) {
+		if (departament != null) {
 			return departament.getName();
 		}
 		return "";

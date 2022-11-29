@@ -5,8 +5,6 @@ public class AutoCompleteDTO {
 	private String label;
 	private String value;
 
-	
-	
 	public AutoCompleteDTO() {
 	}
 
